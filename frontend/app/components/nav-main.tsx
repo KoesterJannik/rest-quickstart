@@ -59,7 +59,7 @@ export function NavMain({
                   {item.items?.map((subItem) => (
                     <SidebarMenuSubItem key={subItem.title}>
                       <SidebarMenuSubButton asChild>
-                        <Link to={subItem.url} className={currentPath === subItem.url ? "bg-sidebar-accent text-sidebar-accent-foreground text-white" : ""}>
+                        <Link to={subItem.url} className={currentPath === subItem.url ? "bg-sidebar-accent  text-white" : ""}>
                           <span>{subItem.title}</span>
                         </Link>
                       </SidebarMenuSubButton>
