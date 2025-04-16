@@ -130,8 +130,5 @@ describe("Auth Route", () => {
         expect(response.body.message).toBe("Login successful");
     });
 
-    afterAll(async () => {
-        await db.user.deleteMany();
-        console.log("DELETED ALL USERS");
-    });
+  
 });

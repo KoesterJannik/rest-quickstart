@@ -37,9 +37,5 @@ describe("Auth Route", () => {
     
 
 
-    afterAll(async () => {
-        await db.user.deleteMany();
-        console.log("DELETED ALL USERS");
-    });
 
 });
