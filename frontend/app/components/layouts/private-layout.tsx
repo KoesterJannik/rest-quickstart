@@ -18,11 +18,12 @@ function PrivateLayout({ children }: Props) {
       setUser(query?.data?.data?.user);
       
     }else if(query?.isError) {
+
       navigate("/login");
       setUser(null);
       localStorage.removeItem("access_token");
     }
-  }, [query.data?.data?.user]);
+  }, [query.data?.data?.user, query.isError, query.isSuccess]);
   return (
     <div className='container mx-auto'>
        
