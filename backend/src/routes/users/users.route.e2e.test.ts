@@ -4,9 +4,9 @@ import { describe, it, expect, afterAll, beforeAll } from "vitest";
 import { generateRandomEmail, generateRandomPassword } from "../../__test__utils/utils";
 import { db } from "../../db";
 import { generateToken, hashPassword } from "../../auth/auth";
-import { User } from "../../../generated/prisma";
+import { User } from "@prisma/client";
 
-describe("Auth Route", () => {
+describe("Users Route", () => {
 
     let exampleUser: User | null = null;
     let exampleUserToken = "";

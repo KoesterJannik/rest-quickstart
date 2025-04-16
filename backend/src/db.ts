@@ -1,4 +1,4 @@
-import { PrismaClient } from "../generated/prisma";
+import { PrismaClient } from "@prisma/client";
 import { config } from "./config";
 
 console.log("Loaded DATABASE_URL", config.DATABASE_URL);
