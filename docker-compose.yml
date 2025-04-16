@@ -1,0 +1,30 @@
+# Backend
+
+
+# Frontend
+
+
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    # load the .env.demo file
+    env_file:
+      - .env.demo
+    volumes:
+      - ./backend/dev.db:/app/dev.db
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_BACKEND_URL: "http://localhost:8080"
+    ports:
+      - "80:80"
+      
+
