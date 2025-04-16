@@ -3,22 +3,34 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "vitest",
+    "test": "dotenv -e .env.test -- npx prisma db push && dotenv -e .env.test -- vitest",
     "build": "tsc",
-    "start": "cross-env NODE_ENV=production node dist/src/index.js",
-    "dev": "cross-env NODE_ENV=development tsx --watch src/index.ts"
+    "start": "dotenv -e .env -- cross-env NODE_ENV=production node dist/src/index.js",
+    "dev": "dotenv -e .env.development -- cross-env NODE_ENV=development tsx --watch src/index.ts",
+    "prisma:migrate:dev": "dotenv -e .env.development -- cross-env NODE_ENV=development prisma migrate dev",
+    "prisma:migrate:deploy:prod": "dotenv -e .env -- cross-env NODE_ENV=production prisma migrate deploy",
+    "prisma:studio:dev": "dotenv -e .env.development -- cross-env NODE_ENV=development prisma studio",
+    "prisma:studio:prod": "dotenv -e .env -- cross-env NODE_ENV=production prisma studio"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@prisma/client": "^6.6.0",
+    "bcryptjs": "^3.0.2",
     "dotenv": "^16.5.0",
+    "dotenv-cli": "^8.0.0",
     "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "prisma": "^6.6.0",
     "zod": "^3.24.2"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/express": "^5.0.1",
+    "@types/jsonwebtoken": "^9.0.9",
+    "@types/node": "^22.14.1",
     "@types/supertest": "^6.0.3",
     "cross-env": "^7.0.3",
     "supertest": "^7.1.0",
