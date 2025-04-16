@@ -5,7 +5,7 @@
   "scripts": {
     "test": "dotenv -e .env.test -- npx prisma db push && dotenv -e .env.test -- vitest",
     "build": "tsc",
-    "start": "dotenv -e .env -- cross-env NODE_ENV=production node dist/src/index.js",
+    "start": "dotenv -e .env -- cross-env NODE_ENV=production prisma migrate deploy && node dist/src/index.js",
     "dev": "dotenv -e .env.development -- cross-env NODE_ENV=development tsx --watch src/index.ts",
     "prisma:migrate:dev": "dotenv -e .env.development -- cross-env NODE_ENV=development prisma migrate dev",
     "prisma:migrate:deploy:prod": "dotenv -e .env -- cross-env NODE_ENV=production prisma migrate deploy",
