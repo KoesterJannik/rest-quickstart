@@ -1,0 +1,48 @@
+name: Backend Tests
+
+on:
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'backend/**'
+  pull_request:
+    branches: [ main, master ]
+    paths:
+      - 'backend/**'
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: backend
+        
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: backend/package-lock.json
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Create .env.test file
+        run: |
+          cat > .env.test << EOL
+          NODE_ENV=test
+          PORT=8080
+          DATABASE_URL="file:./test.db"
+          JWT_SECRET="secret"
+          JWT_EXPIRES_IN_MS=86400000
+          BCRYPT_SALT_ROUNDS=10
+          ALLOWED_ORIGIN="http://localhost:5173"
+          EOL
+      
+      - name: Run tests
+        run: npm run test
