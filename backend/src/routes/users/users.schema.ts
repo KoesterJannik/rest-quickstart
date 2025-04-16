@@ -5,4 +5,4 @@ export const registerSchema = z.object({
   password: z.string().min(8),
 });
 
-export const loginSchema = registerSchema
+export const loginSchema = registerSchema;

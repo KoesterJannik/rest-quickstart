@@ -10,7 +10,8 @@
     "prisma:migrate:dev": "dotenv -e .env.development -- cross-env NODE_ENV=development prisma migrate dev",
     "prisma:migrate:deploy:prod": "dotenv -e .env -- cross-env NODE_ENV=production prisma migrate deploy",
     "prisma:studio:dev": "dotenv -e .env.development -- cross-env NODE_ENV=development prisma studio",
-    "prisma:studio:prod": "dotenv -e .env -- cross-env NODE_ENV=production prisma studio"
+    "prisma:studio:prod": "dotenv -e .env -- cross-env NODE_ENV=production prisma studio",
+    "format": "prettier --write ."
   },
   "keywords": [],
   "author": "",
@@ -18,7 +19,9 @@
   "description": "",
   "dependencies": {
     "@prisma/client": "^6.6.0",
+    "@types/cors": "^2.8.17",
     "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "dotenv-cli": "^8.0.0",
     "express": "^5.1.0",
@@ -33,6 +36,7 @@
     "@types/node": "^22.14.1",
     "@types/supertest": "^6.0.3",
     "cross-env": "^7.0.3",
+    "prettier": "3.5.3",
     "supertest": "^7.1.0",
     "tsx": "^4.19.3",
     "typescript": "^5.8.3",
