@@ -60,7 +60,7 @@ describe("Auth Route", () => {
     await db.user.create({
       data: {
         email: payload.email,
-        password: payload.password,
+        password: await hashPassword(payload.password),
       },
     });
     const response = await supertest(app)

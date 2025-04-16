@@ -1,7 +1,7 @@
 import { Request, Response, Router } from "express";
 import { loginSchema, registerSchema } from "./auth.schema";
 import { db } from "../../db";
-import { comparePassword, generateToken, verifyToken } from "../../auth/auth";
+import { comparePassword, generateToken, hashPassword, verifyToken } from "../../auth/auth";
 const authRouter = Router();
 
 authRouter.post("/register", async (req, res) => {
@@ -16,21 +16,24 @@ authRouter.post("/register", async (req, res) => {
       });
   } else {
     const { email, password } = safeParsed.data;
+    const hashedPassword = await hashPassword(password);
     const isEmailInUse = await db.user.findUnique({
       where: { email },
     });
     if (isEmailInUse) {
       res.status(400).json({ message: "Email already in use" });
+    }else{
+        const user = await db.user.create({
+            data: { email, password: hashedPassword },
+          });
+          const token = await generateToken(user.id);
+      
+          res
+            .status(201)
+            .json({ message: "User created successfully", access_token: token });
+        }
     }
-    const user = await db.user.create({
-      data: { email, password },
-    });
-    const token = await generateToken(user.id);
 
-    res
-      .status(201)
-      .json({ message: "User created successfully", access_token: token });
-  }
 });
 
 authRouter.post("/login", async (req, res) => {
@@ -53,11 +56,13 @@ authRouter.post("/login", async (req, res) => {
       const isPasswordValid = await comparePassword(password, user.password);
       if (!isPasswordValid) {
         res.status(400).json({ message: "Invalid credentials" });
+      }else{
+        const token = await generateToken(user.id);
+        res
+          .status(200)
+          .json({ message: "Login successful", access_token: token });
       }
-      const token = await generateToken(user.id);
-      res
-        .status(200)
-        .json({ message: "Login successful", access_token: token });
+      
     }
   }
 });

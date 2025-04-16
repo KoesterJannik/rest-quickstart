@@ -31,7 +31,7 @@ describe("Users Route", () => {
       .get("/api/v1/users/me")
       .set("Authorization", `Bearer ${exampleUserToken}`);
     expect(response.status).toBe(200);
-    expect(response.body.id).toBe(exampleUser?.id);
+    expect(response.body.user.id).toBe(exampleUser?.id);
   });
   it("should return 400 if token is invalid", async () => {
     const response = await supertest(app)
