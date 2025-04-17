@@ -19,7 +19,9 @@ import { Toaster } from "@/components/ui/sonner";
 
 const DemoBanner = () => {
   return (
-    <div className="fixed top-4 right-4 z-50 max-w-[90vw] sm:max-w-[400px] p-3 bg-black text-white border-2 border-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+    <div className="fixed z-50 max-w-[90vw] border-2 border-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] bg-black text-white p-3
+      sm:right-4 sm:top-1/2 sm:transform sm:-translate-y-1/2 sm:max-w-[400px]
+      bottom-4 left-4 right-4 sm:left-auto md:bottom-auto">
       <h3 className="text-lg font-bold uppercase mb-1">This is a demo!</h3>
       <p className="text-sm">User data might be wiped every day</p>
     </div>
