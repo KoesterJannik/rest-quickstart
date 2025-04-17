@@ -23,7 +23,7 @@ const DemoBanner = () => {
       sm:right-4 sm:top-1/2 sm:transform sm:-translate-y-1/2 sm:max-w-[400px]
       bottom-4 left-4 right-4 sm:left-auto md:bottom-auto">
       <h3 className="text-lg font-bold uppercase mb-1">This is a demo!</h3>
-      <p className="text-sm">User data might be wiped every day</p>
+      <p className="text-sm">User data will be deleted every day</p>
     </div>
   );
 };
